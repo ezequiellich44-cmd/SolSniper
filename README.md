@@ -43,11 +43,47 @@ Every Solana sniper bot today is **closed-source and takes 0.5-1% per trade**.
 
 ---
 
-## Quick Start
+## Quick Start — Scan a Token (REAL DATA)
 
 ```bash
 pip install git+https://github.com/ezequiellich44-cmd/SolSniper.git
+
+# Scan ANY token for rug risk — uses real on-chain data
+solsniper scan <token-mint-address>
 ```
+
+**Demo output (real data from Solana mainnet):**
+
+```
+$ solsniper scan So11111111111111111111111111111111111111112
+
+Scanning So11111111111111111111111111111111111111112...
+Querying DexScreener + Solana RPC...
+
+==================================================
+  TOKEN RISK REPORT
+==================================================
+  Mint:     So111111...1112
+  Risk:     [MEDIUM] 60.0%
+  Verdict:  CAUTION
+==================================================
+
+  SIGNALS:
+    Liquidity:       1089.52 SOL
+    Liquidity Lock:  NO
+    Top Holder:      0.0%
+    Holder Count:    0
+    Mint Authority:  NO (safe)
+    Freeze Auth:     NO (safe)
+    Buy Tax:         0.0%
+    Sell Tax:        15.3%
+    Twitter:         NO
+    Website:         NO
+
+  RESULT: Token has some risks. Proceed with caution.
+```
+
+This queries **real Solana mainnet data** via DexScreener API + Solana RPC. No simulations.
 
 ```bash
 # Set your private key
