@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "solsniper"
+version = "0.1.0"
+description = "Premium Solana sniper bot — pump.fun + Raydium + copy trading + Jito bundles. Self-hosted, no fees, anti-rug ML."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Eze Lech", email = "ezequiellich44@gmail.com" }
+]
+keywords = ["solana", "sniper-bot", "pump.fun", "raydium", "mev-protection", "jito", "crypto", "trading-bot", "memecoin"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "httpx>=0.27",
+    "solders>=0.21",
+    "solana>=0.34",
+    "base58>=2.1",
+    "click>=8.1",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+solsniper = "solsniper.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ezequiellich44-cmd/SolSniper"
+Repository = "https://github.com/ezequiellich44-cmd/SolSniper"
+Issues = "https://github.com/ezequiellich44-cmd/SolSniper/issues"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
