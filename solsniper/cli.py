@@ -115,6 +115,40 @@ def start(rpc_url, private_key, buy_amount, slippage, use_jito, detect_rugs):
 
 
 @cli.command()
+@click.argument("address")
+@click.option("--rpc-url", default="https://api.mainnet-beta.solana.com")
+def wallet(address: str, rpc_url: str):
+    """Analyze a wallet — balance, tokens, trading activity.
+
+    Example: solsniper wallet 5Q544fKrFoe6tsEbD7S8EmxTRJYaqtauCKZZoQf
+    """
+    from solsniper.copytrade.engine import CopyTrader, CopyTradeConfig
+
+    async def _analyze():
+        trader = CopyTrader(CopyTradeConfig(), rpc_url=rpc_url)
+
+        click.echo(f"Analyzing {address[:12]}...{address[-4:]}...")
+        click.echo("Querying Solana RPC...")
+        click.echo()
+
+        report = await trader.analyze_wallet(address)
+
+        click.echo("=" * 50)
+        click.echo("  WALLET ANALYSIS")
+        click.echo("=" * 50)
+        click.echo(f"  Address:  {address[:12]}...{address[-4:]}")
+        click.echo(f"  Balance:  {report['sol_balance']:.2f} SOL")
+        click.echo(f"  Whale:    {'YES' if report['is_whale'] else 'NO'}")
+        click.echo(f"  Tokens:   {report['token_count']}")
+        click.echo(f"  Recent TX: {report['recent_transactions']}")
+        click.echo("=" * 50)
+        click.echo()
+        click.echo(f"  RECOMMENDATION: {report['recommendation']}")
+
+    asyncio.run(_analyze())
+
+
+@cli.command()
 def status():
     """Show current status and configuration."""
     click.echo(f"SolSniper v{__version__}")
@@ -128,6 +162,7 @@ def status():
     click.echo()
     click.echo("Quick start:")
     click.echo("  solsniper scan <mint>     # Scan a token for rug risk")
+    click.echo("  solsniper wallet <addr>   # Analyze a wallet")
     click.echo("  solsniper start           # Start sniping (requires private key)")
     click.echo("  solsniper serve           # Start API server")
 
