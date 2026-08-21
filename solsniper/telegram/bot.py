@@ -65,20 +65,63 @@ class TelegramBot:
             await self._send_message(msg["text"], msg.get("parse_mode"))
 
     async def _send_message(self, text: str, parse_mode: str = "HTML") -> None:
-        """Send a message to the configured chat."""
+        """Send a message to the configured chat via Telegram Bot API."""
         if not self.config.bot_token or not self.config.chat_id:
             return
 
-        # In production: use Telegram Bot API
-        # import httpx
-        # async with httpx.AsyncClient() as client:
-        #     url = f"https://api.telegram.org/bot{self.config.bot_token}/sendMessage"
-        #     await client.post(url, json={
-        #         "chat_id": self.config.chat_id,
-        #         "text": text,
-        #         "parse_mode": parse_mode,
-        #     })
-        print(f"[Telegram] {text[:100]}...")
+        import httpx
+
+        try:
+            async with httpx.AsyncClient() as client:
+                url = f"https://api.telegram.org/bot{self.config.bot_token}/sendMessage"
+                resp = await client.post(
+                    url,
+                    json={
+                        "chat_id": self.config.chat_id,
+                        "text": text,
+                        "parse_mode": parse_mode,
+                    },
+                    timeout=10.0,
+                )
+                if resp.status_code != 200:
+                    print(f"[Telegram] Error sending message: {resp.status_code}")
+        except Exception as e:
+            print(f"[Telegram] Error: {e}")
+
+    async def send_command(self, command: str) -> dict:
+        """Handle a Telegram command."""
+        commands = {
+            "/start": self._cmd_start,
+            "/stop": self._cmd_stop,
+            "/status": self._cmd_status,
+            "/scan": self._cmd_scan,
+            "/positions": self._cmd_positions,
+        }
+
+        handler = commands.get(command)
+        if handler:
+            return await handler()
+        return {"error": f"Unknown command: {command}"}
+
+    async def _cmd_start(self) -> dict:
+        """Start sniping."""
+        return {"action": "start", "message": "Sniping started"}
+
+    async def _cmd_stop(self) -> dict:
+        """Stop sniping."""
+        return {"action": "stop", "message": "Sniping stopped"}
+
+    async def _cmd_status(self) -> dict:
+        """Get status."""
+        return {"action": "status", "stats": self.get_stats()}
+
+    async def _cmd_scan(self) -> dict:
+        """Scan a token."""
+        return {"action": "scan", "message": "Use /scan <mint>"}
+
+    async def _cmd_positions(self) -> dict:
+        """Get positions."""
+        return {"action": "positions", "message": "No open positions"}
 
     async def alert_new_token(self, token: TokenInfo, action: str) -> None:
         """Alert about a new detected token."""
