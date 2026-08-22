@@ -1,0 +1,84 @@
+name: Auto-Respond to Issues
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  auto-respond:
+    runs-on: ubuntu-latest
+    if: github.actor != 'ezequiellich44-cmd'
+    steps:
+      - name: Auto-reply to new issues
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            const response = \## 🤖 Auto-Response from SolSniper Bot
+            
+            Thanks for opening this issue! I'm the SolSniper bot.
+            
+            **Quick links:**
+            - 📖 [Documentation](https://ezequiellich44-cmd.github.io/SolSniper/)
+            - 🚀 [Quick Start](https://github.com/ezequiellich44-cmd/SolSniper#-quick-start-30-seconds)
+            - 💬 [FAQ](https://github.com/ezequiellich44-cmd/SolSniper/blob/main/docs/FAQ.md)
+            - 🔥 [Founding Member Offer - 70% OFF](https://github.com/ezequiellich44-cmd/SolSniper/issues/4)
+            
+            **If you're asking about:**
+            - **Rug detection** → Check our [AI Rug Detection](https://github.com/ezequiellich44-cmd/SolSniper#-ai-rug-detection-real-ml-not-pattern-matching)
+            - **Pricing** → [Self-Hosted FREE, Pro /mo, Lifetime .50 (70% OFF)](https://github.com/ezequiellich44-cmd/SolSniper#-pricing)
+            - **Installation** → \pip install git+https://github.com/ezequiellich44-cmd/SolSniper.git\
+            - **Features** → [Full comparison vs Trojan/Banana Gun](https://github.com/ezequiellich44-cmd/SolSniper#-why-500-traders-chose-solsniper)
+            
+            I'll get back to you personally within 24 hours!
+            
+            ---
+            *This is an automated response. Real human will follow up.*\
+            
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: issue.number,
+              body: response
+            });
+
+      - name: Auto-reply to comments mentioning pricing/buy
+        if: github.event_name == 'issue_comment' && contains(github.event.comment.body, 'buy') || contains(github.event.comment.body, 'price') || contains(github.event.comment.body, 'purchase') || contains(github.event.comment.body, 'founder')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = context.payload.comment;
+            const issue = context.payload.issue;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            const response = \## 💰 Purchase Information
+            
+            Thanks for your interest in SolSniper Pro!
+            
+            **Current Offer: 70% OFF Founding Member**
+            - **.50** one-time (regular \)
+            - Only **50 spots** available
+            - Lifetime access + all future features
+            
+            **To purchase:**
+            1. Comment \"FOUNDING MEMBER\" on [issue #4](https://github.com/ezequiellich44-cmd/SolSniper/issues/4)
+            2. I'll DM you payment details (SOL/USDC)
+            3. Get instant lifetime access
+            
+            **Wallet:** \3fZSMAyCEMhZwWiynbJDjoYNUT97aiV9BLzoUNroEMAz\ (Solana)
+            
+            Questions? Reply here and I'll answer!\
+            
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: issue.number,
+              body: response
+            });
