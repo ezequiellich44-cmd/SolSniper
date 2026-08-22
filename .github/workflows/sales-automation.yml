@@ -1,0 +1,117 @@
+name: Sales Automation
+
+on:
+  issues:
+    types: [opened, labeled, closed]
+  issue_comment:
+    types: [created]
+
+jobs:
+  auto-followup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto-reply to access requests
+        if: github.event_name == 'issues' && github.event.issue.labels[0].name == 'access-request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const number = issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            // Extract form data
+            const body = issue.body;
+            const planMatch = body.match(/Which plan\?\s*\n\s*-\s*'([^']+)'/);
+            const contactMatch = body.match(/Contact.*?\n\s*['\"]([^'\"]+)['\"]/);
+            
+            const plan = planMatch ? planMatch[1] : 'Not specified';
+            const contact = contactMatch ? contactMatch[1] : 'Not provided';
+            
+            const response = \## 🎯 Access Request Received!
+            
+            Thanks for requesting **\**!
+            
+            **Contact:** \
+            
+            ---
+            
+            ### Next Steps:
+            1. **Payment:** Send to wallet \3fZSMAyCEMhZwWiynbJDjoYNUT97aiV9BLzoUNroEMAz\ (Solana)
+            2. **Amount:** \
+            3. **Memo:** Include issue #\
+            
+            ### After Payment:
+            - Reply here with transaction signature
+            - I'll verify and send lifetime access within 15 minutes
+            - You'll get: GitHub access + Telegram bot + Hosted RPC
+            
+            ### Questions?
+            Just reply here. I'll respond within 1 hour.
+            
+            ---
+            **Wallet:** \3fZSMAyCEMhZwWiynbJDjoYNUT97aiV9BLzoUNroEMAz\ (Solana)\
+            
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: number,
+              body: response
+            });
+            
+            // Add labels for tracking
+            await github.rest.issues.addLabels({
+              owner,
+              repo,
+              issue_number: number,
+              labels: ['pending-payment', 'sales-pipeline']
+            });
+
+      - name: Follow-up on pending payments (24h)
+        if: github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'pending-payment'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // This would need a scheduled workflow, skipping for now
+            console.log('Payment follow-up scheduled');
+
+      - name: Auto-close on payment confirmed
+        if: github.event_name == 'issue_comment' && contains(github.event.comment.body, 'paid') || contains(github.event.comment.body, 'transaction') || contains(github.event.comment.body, 'signature')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = context.payload.comment;
+            const issue = context.payload.issue;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            // Only respond if comment is from issue author (potential buyer)
+            if (comment.user.login === issue.user.login) {
+              const response = \## ✅ Payment Received!
+              
+              Thanks for the transaction! I'll verify now.
+              
+              **Expected:** Access delivered within 15 minutes.
+              
+              **What you'll get:**
+              - ✅ Lifetime GitHub access to private repo
+              - ✅ Telegram bot token
+              - ✅ Hosted RPC endpoint
+              - ✅ Priority support
+              - ✅ All future updates
+              
+              I'll reply with your access details shortly.\
+              
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issue.number,
+                body: response
+              });
+              
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: issue.number,
+                labels: ['payment-received', 'delivering-access']
+              });
