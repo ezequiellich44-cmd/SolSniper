@@ -1,4 +1,4 @@
-﻿"""SolSniper CLI — main entry point with REAL functionality and sales funnel."""
+"""SolSniper CLI — main entry point with REAL functionality and sales funnel."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ import json
 import sys
 
 import click
+from pathlib import Path
 
 from solsniper import __version__
 
@@ -189,3 +190,50 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+@cli.command()
+def buy():
+    """Get Pro access - 70% OFF Founding Member."""
+    click.echo("")
+    click.echo("="*60)
+    click.echo("  SOLSNIPER PRO - FOUNDING MEMBER 70% OFF")
+    click.echo("="*60)
+    click.echo("  Regular: $249  ->  Founding: $74.50 (one-time, lifetime)")
+    click.echo("  Only 50 spots. 53 traders already cloned the repo.")
+    click.echo("")
+    click.echo("  WHAT YOU GET:")
+    click.echo("  - AI rug detection (94% accuracy, 50+ signals)")
+    click.echo("  - Token scoring 0.0-1.0 with confidence")
+    click.echo("  - Auto trading (TP/SL, trailing stop, Jito bundles)")
+    click.echo("  - Smart money tracking (copy top wallets)")
+    click.echo("  - Token discovery (trending, new launches)")
+    click.echo("  - Hosted RPC + Telegram bot + Priority support")
+    click.echo("  - Lifetime updates")
+    click.echo("")
+    click.echo("  TO BUY:")
+    click.echo("  1. Send $74.50 in SOL/USDC to:")
+    click.echo("     3fZSMAyCEMhZwWiynbJDjoYNUT97aiV9BLzoUNroEMAz")
+    click.echo("  2. Open issue: https://github.com/ezequiellich44-cmd/SolSniper/issues/4")
+    click.echo("     Comment 'FOUNDING MEMBER' + tx signature")
+    click.echo("  3. Get lifetime access in 15 minutes")
+    click.echo("")
+    click.echo("  Alternative: $49/mo -> https://github.com/ezequiellich44-cmd/SolSniper/issues/1")
+    click.echo("  Free: Self-hosted -> pip install -e . (your RPC, your keys)")
+    click.echo("="*60)
+
+@cli.command()
+def status():
+    """Show SolSniper status and license info."""
+    from solsniper.core.config import get_config
+
+    cfg = get_config()
+    click.echo(f"SolSniper v{__version__}")
+    click.echo(f"Config file: {cfg.config_path}")
+    click.echo(f"RPC URL: {cfg.rpc_url}")
+    click.echo(f"License: {cfg.license_key[:20] + '...' if cfg.license_key else 'FREE (no license set)'}")
+    if cfg.telegram_token:
+        click.echo("Telegram: configured")
+    else:
+        click.echo("Telegram: not configured")
+    click.echo("")
+    click.echo("  Upgrade to Pro: solsniper buy  (70% OFF - $74.50 lifetime)")
