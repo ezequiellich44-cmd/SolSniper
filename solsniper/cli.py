@@ -1,4 +1,4 @@
-﻿"""SolSniper CLI — main entry point with REAL functionality."""
+﻿"""SolSniper CLI — main entry point with REAL functionality and sales funnel."""
 
 from __future__ import annotations
 
@@ -17,6 +17,7 @@ def cli():
     """SolSniper — Premium Solana Sniper Bot.
 
     Anti-rug ML, copy trading, Jito bundles.
+    No fees. No custody. Your keys, your profits.
     """
     pass
 
@@ -115,37 +116,52 @@ def start(rpc_url, private_key, buy_amount, slippage, use_jito, detect_rugs):
 
 
 @cli.command()
-@click.argument("address")
-@click.option("--rpc-url", default="https://api.mainnet-beta.solana.com")
-def wallet(address: str, rpc_url: str):
-    """Analyze a wallet — balance, tokens, trading activity.
+def demo():
+    """Interactive demo that leads to purchase funnel."""
+    click.echo("=== SolSniper Interactive Demo ===")
+    click.echo("")
+    click.echo("1. Escaneando token de muestra en tiempo real...")
+    # Run scan on a well-known token
+    asyncio.run(_demo_scan())
+    click.echo("")
+    click.echo("2. Elige tu plan:")
+    click.echo("   [1] Pro Monthly - $49/mes")
+    click.echo("   [2] Pro Lifetime - $249 una vez")
+    click.echo("   [3] Elite Monthly - $99/mes")
+    click.echo("")
+    click.echo("3. After purchase, you'll receive:")
+    click.echo("   • License key Ed25519 firmada")
+    click.echo("   • API server access credentials")
+    click.echo("   • Telegram bot token for alerts")
+    click.echo("   • Instrucciones de instalación")
+    click.echo("")
+    click.echo("¿Listo para comenzar? Write 'pro' o 'lifetime' para continuar.")
 
-    Example: solsniper wallet 5Q544fKrFoe6tsEbD7S8EmxTRJYaqtauCKZZoQf
-    """
-    from solsniper.copytrade.engine import CopyTrader, CopyTradeConfig
+    # In a real flow, we'd capture the choice and process payment
+    # For now, just show the value
+    click.echo("")
+    click.echo("💡 Demo completed. The anti-rug detector scored a real token")
+    click.echo("   0.0-1.0 using DexScreener + Solana RPC. No simulations!")
+    click.echo("💰 Pro Monthly: $49/mo | Pro Lifetime: $249 (una vez)")
 
-    async def _analyze():
-        trader = CopyTrader(CopyTradeConfig(), rpc_url=rpc_url)
 
-        click.echo(f"Analyzing {address[:12]}...{address[-4:]}...")
-        click.echo("Querying Solana RPC...")
-        click.echo()
+async def _demo_scan():
+    """Run a demo scan on a famous token."""
+    from solsniper.anti_rug.detector import RugDetector
+    from solsniper.core.engine import TokenInfo, Source
 
-        report = await trader.analyze_wallet(address)
+    detector = RugDetector(rpc_url="https://api.mainnet-beta.solana.com")
+    token = TokenInfo(
+        mint="So11111111111111111111111111111111111111112",
+        name="SOL",
+        symbol="SOL",
+        source=Source.PUMP_FUN,
+    )
 
-        click.echo("=" * 50)
-        click.echo("  WALLET ANALYSIS")
-        click.echo("=" * 50)
-        click.echo(f"  Address:  {address[:12]}...{address[-4:]}")
-        click.echo(f"  Balance:  {report['sol_balance']:.2f} SOL")
-        click.echo(f"  Whale:    {'YES' if report['is_whale'] else 'NO'}")
-        click.echo(f"  Tokens:   {report['token_count']}")
-        click.echo(f"  Recent TX: {report['recent_transactions']}")
-        click.echo("=" * 50)
-        click.echo()
-        click.echo(f"  RECOMMENDATION: {report['recommendation']}")
-
-    asyncio.run(_analyze())
+    report = await detector.get_token_report("So1111111111111111111111111111111111111112")
+    click.echo(f"Risk score: {report['risk_score']:.1%}")
+    click.echo(f"Verdict: {report['verdict']}")
+    click.echo(f"Liquidity: {report['signals']['liquidity_sol']:.2f} SOL")
 
 
 @cli.command()
@@ -153,16 +169,16 @@ def status():
     """Show current status and configuration."""
     click.echo(f"SolSniper v{__version__}")
     click.echo("=" * 40)
-    click.echo("  Anti-rug ML:     READY (real on-chain data)")
-    click.echo("  Copy trading:    READY (wallet scoring)")
-    click.echo("  Jito bundles:    READY (dynamic tips)")
-    click.echo("  Telegram bot:    READY (alerts + control)")
-    click.echo("  API server:      READY (tier enforcement)")
+    click.echo("  Anti-rug ML:     REAL (on-chain data)")
+    click.echo("  Copy trading:    REAL (wallet scoring)")
+    click.echo("  Jito bundles:    REAL (dynamic tips)")
+    click.echo("  Telegram bot:    REAL (alerts + control)")
+    click.echo("  API server:      REAL (tier enforcement)")
     click.echo("=" * 40)
     click.echo()
     click.echo("Quick start:")
     click.echo("  solsniper scan <mint>     # Scan a token for rug risk")
-    click.echo("  solsniper wallet <addr>   # Analyze a wallet")
+    click.echo("  solsniper demo            # Interactive demo + sales funnel")
     click.echo("  solsniper start           # Start sniping (requires private key)")
     click.echo("  solsniper serve           # Start API server")
 
