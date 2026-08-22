@@ -3,41 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SolSniper - Anti-Rug ML for Solana</title>
-<meta name="description" content="Detect rug pulls before you buy. Real on-chain scoring 0.0-1.0. Jito bundles. 0% fees.">
+<title>SolSniper - The Most Advanced Solana Trading Bot</title>
+<meta name="description" content="AI-powered rug detection, auto trading, smart money tracking, token discovery. 0% fees.">
 <style>
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(0,255,136,.2)}50%{box-shadow:0 0 40px rgba(0,255,136,.5)}}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:#080808;color:#e0e0e0;line-height:1.7}
-.c{max-width:1100px;margin:0 auto;padding:0 24px}
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;background:rgba(8,8,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#080808;color:#e0e0e0;line-height:1.7}
+.c{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
 nav .c{display:flex;justify-content:space-between;align-items:center}
 .nl{font-size:1.3rem;font-weight:800;color:#00ff88}
-.nk{display:flex;gap:2rem;list-style:none}
-.nk a{color:#777;font-size:.9rem;text-decoration:none}.nk a:hover{color:#00ff88}
+.nk{display:flex;gap:2rem;list-style:none}.nk a{color:#777;font-size:.9rem;text-decoration:none}.nk a:hover{color:#00ff88}
 .nc{padding:.55rem 1.1rem;background:linear-gradient(90deg,#00ff88,#00ccff);color:#000;border-radius:6px;font-weight:600;font-size:.85rem;text-decoration:none}
-.hero{min-height:100vh;display:flex;align-items:center;background:radial-gradient(ellipse at 50% 0%,rgba(0,255,136,.06) 0%,transparent 60%),#080808;padding-top:80px}
+.hero{min-height:100vh;display:flex;align-items:center;background:radial-gradient(ellipse at 50% 0%,rgba(0,255,136,.08) 0%,transparent 60%),#080808;padding-top:80px}
 .hero .c{text-align:center;width:100%;animation:fadeUp .8s ease}
-.badge{display:inline-block;padding:.35rem .9rem;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);border-radius:20px;font-size:.8rem;color:#00ff88;margin-bottom:1.5rem}
-.hero h1{font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem}
+.badge{display:inline-block;padding:.4rem 1rem;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);border-radius:20px;font-size:.8rem;color:#00ff88;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem}
 .hero h1 .g{background:linear-gradient(135deg,#00ff88,#00ccff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hs{font-size:1.2rem;color:#777;max-width:620px;margin:0 auto 2rem}
-.hstats{display:flex;justify-content:center;gap:3.5rem;margin:2.5rem 0;flex-wrap:wrap}
+.hs{font-size:1.2rem;color:#777;max-width:700px;margin:0 auto 2rem}
+.hstats{display:flex;justify-content:center;gap:3rem;margin:2.5rem 0;flex-wrap:wrap}
 .st{text-align:center}.sn{font-size:2.8rem;font-weight:800;color:#00ff88}.sl{font-size:.85rem;color:#555;margin-top:.3rem}
 .cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
-.btn{padding:.85rem 1.8rem;border-radius:8px;font-size:1rem;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:.5rem}
-.bp{background:linear-gradient(135deg,#00ff88,#00ccff);color:#000;box-shadow:0 4px 20px rgba(0,255,136,.25)}
+.btn{padding:.9rem 2rem;border-radius:8px;font-size:1rem;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:.5rem}
+.bp{background:linear-gradient(135deg,#00ff88,#00ccff);color:#000;box-shadow:0 4px 20px rgba(0,255,136,.3)}
 .bp:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,255,136,.4);color:#000}
 .bs{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#fff}
 .bs:hover{border-color:#00ff88;color:#00ff88}
-.ht{display:flex;justify-content:center;gap:2rem;margin-top:2.5rem;color:#444;font-size:.85rem}
+.ht{display:flex;justify-content:center;gap:2rem;margin-top:2.5rem;color:#444;font-size:.85rem;flex-wrap:wrap}
 .ht span{display:flex;align-items:center;gap:.4rem}
 .dot{width:6px;height:6px;border-radius:50%;background:#00ff88;display:inline-block}
 section{padding:100px 0}
 .sl2{display:inline-block;padding:.3rem .8rem;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);border-radius:4px;font-size:.75rem;color:#00ff88;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem}
 .st2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;margin-bottom:1rem}
-.ss{color:#666;font-size:1.05rem;max-width:580px}
+.ss{color:#666;font-size:1.05rem;max-width:600px}
 .prob{background:#0d0d0d}.prob .st2{color:#ff4444}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2.5rem}
 .pcard{background:linear-gradient(135deg,rgba(255,68,68,.04),rgba(255,68,68,.01));padding:1.8rem;border-radius:14px;border:1px solid rgba(255,68,68,.12);transition:all .3s}
@@ -45,24 +44,23 @@ section{padding:100px 0}
 .pcard h3{color:#ff6b6b;margin-bottom:.6rem;font-size:1.15rem}
 .pcard p{color:#777;font-size:.93rem}
 .pcard .num{font-size:1.8rem;font-weight:800;color:#ff4444;margin-bottom:.3rem}
-.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:2.5rem}
 .scard{background:linear-gradient(135deg,rgba(0,255,136,.04),rgba(0,204,255,.01));padding:1.8rem;border-radius:14px;border:1px solid rgba(0,255,136,.1);transition:all .3s}
 .scard:hover{border-color:rgba(0,255,136,.3);transform:translateY(-3px);animation:glow 2s ease infinite}
 .scard .ico{font-size:1.8rem;margin-bottom:.8rem}
-.scard h3{margin-bottom:.5rem;font-size:1.1rem}
-.scard p{color:#777;font-size:.93rem}
+.scard h3{margin-bottom:.5rem;font-size:1.05rem}
+.scard p{color:#777;font-size:.9rem}
 .demo{background:#0d0d0d}
-.dbox{background:#111;border-radius:14px;padding:2rem;border:1px solid #222;max-width:750px;margin:2.5rem auto 0}
+.dbox{background:#111;border-radius:14px;padding:2rem;border:1px solid #222;max-width:800px;margin:2.5rem auto 0}
 .dcmd{background:#000;padding:1rem;border-radius:8px;font-family:monospace;font-size:.9rem;color:#00ff88;border:1px solid #333;margin-bottom:1rem}
 .dout{background:#0a1a0a;padding:1rem;border-radius:8px;font-family:monospace;font-size:.82rem;color:#00ff88;border:1px solid rgba(0,255,136,.2);white-space:pre-wrap;line-height:1.6}
-.dout .y{color:#ffcc00}.dout .r{color:#ff4444}.dout .w{color:#888}
+.dout .y{color:#ffcc00}.dout .r{color:#ff4444}
 .ctbl{width:100%;border-collapse:collapse;background:#111;border-radius:14px;overflow:hidden;margin-top:2.5rem}
-.ctbl th,.ctbl td{padding:1rem;text-align:center;border-bottom:1px solid #1a1a1a}
-.ctbl th{background:#151515;font-weight:600;font-size:.9rem}
+.ctbl th,.ctbl td{padding:.8rem .6rem;text-align:center;border-bottom:1px solid #1a1a1a;font-size:.9rem}
+.ctbl th{background:#151515;font-weight:600}
 .ctbl tr:last-child td{border-bottom:none}
 .hl{background:rgba(0,255,136,.06)}
-.ck{color:#00ff88;font-weight:700}
-.cr{color:#ff4444}
+.ck{color:#00ff88;font-weight:700}.cr{color:#ff4444}
 .pgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1000px;margin:2.5rem auto 0}
 .pcard2{background:#111;padding:2rem;border-radius:14px;border:1px solid #222;text-align:center;transition:all .3s}
 .pcard2.feat{border-color:#00ff88;transform:scale(1.03);box-shadow:0 0 40px rgba(0,255,136,.1)}
@@ -76,14 +74,10 @@ footer{padding:35px 0;text-align:center;color:#333;border-top:1px solid #151515;
 </style>
 </head>
 <body>
-<nav><div class="c"><a class="nl" href="#">SolSniper</a><ul class="nk"><li><a href="#problem">Problem</a></li><li><a href="#solution">Solution</a></li><li><a href="#demo">Demo</a></li><li><a href="#compare">Compare</a></li><li><a href="#pricing">Pricing</a></li></ul><a class="nc" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started</a></div></nav>
-
-<section class="hero"><div class="c"><div class="badge">Open Source &bull; Self-Hosted &bull; 0% Fees</div><h1>Detect <span class="g">Rug Pulls</span><br>Before You Buy</h1><p class="hs">SolSniper uses real on-chain data from DexScreener and Solana RPC to score every token 0.0-1.0. Stop losing money on honeypots. Trade with confidence.</p><div class="hstats"><div class="st"><div class="sn">80%+</div><div class="sl">New Tokens Are Rugs</div></div><div class="st"><div class="sn">$0</div><div class="sl">Trading Fees</div></div><div class="st"><div class="sn">0.0-1.0</div><div class="sl">Risk Scoring</div></div><div class="st"><div class="sn">100%</div><div class="sl">On-Chain Data</div></div></div><div class="cta"><a class="btn bp" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started Free</a><a class="btn bs" href="#demo">See Live Demo</a></div><div class="ht"><span><span class="dot"></span> Jito Bundles</span><span><span class="dot"></span> Anti-Rug ML</span><span><span class="dot"></span> Copy Trading</span><span><span class="dot"></span> Open Source</span></div></div></section>
-
-<section class="prob" id="problem"><div class="c"><span class="sl2">The Problem</span><h2 class="st2">Every Day, Traders Lose Millions to Rug Pulls</h2><div class="pgrid"><div class="pcard"><div class="num">80%+</div><h3>Of New Tokens Are Rugs</h3><p>Dev launches token, collects liquidity, disappears. You lose everything. This happens thousands of times per day on Solana.</p></div><div class="pcard"><div class="num">$0</div><h3>Protection from Existing Bots</h3><p>Trojan charges 1% per trade. Banana Gun charges 0.5-1%. But NONE of them detect rug pulls. You pay fees for zero protection.</p></div><div class="pcard"><div class="num">Seconds</div><h3>That Decide Everything</h3><p>By the time you manually check DexScreener, the dev has already rugged. You need real-time, automated protection that works in milliseconds.</p></div></div></div></section>
-
-<section id="solution"><div class="c"><span class="sl2">The Solution</span><h2 class="st2">Real Anti-Rug Protection. Finally.</h2><p class="ss">SolSniper is the ONLY tool that queries real on-chain data to detect rug pulls before you trade.</p><div class="sgrid"><div class="scard"><div class="ico">&#x1F6E1;</div><h3>Anti-Rug ML Engine</h3><p>Queries DexScreener API + Solana RPC in real-time. Detects mint authority, freeze authority, holder concentration, and honeypot patterns.</p></div><div class="scard"><div class="ico">&#x1F4CA;</div><h3>Token Scoring 0.0-1.0</h3><p>Every token gets a real-time risk score. 0.0 = safe to trade. 1.0 = definitely a rug. Make informed decisions in milliseconds.</p></div><div class="scard"><div class="ico">&#x26A1;</div><h3>Jito Bundle Execution</h3><p>Private mempool via Jito. Your trades never hit the public mempool. No front-running. No sandwich attacks.</p></div><div class="scard"><div class="ico">&#x1F4B0;</div><h3>Zero Trading Fees</h3><p>Unlike Trojan (1%), Banana Gun (0.5-1%), and Photon (~0.5%), SolSniper charges absolutely zero fees. Keep 100% of profits.</p></div><div class="scard"><div class="ico">&#x1F517;</div><h3>Copy Trading + Scoring</h3><p>Copy top wallets with built-in risk scoring. See win rate, profit factor, and risk level before copying any single trade.</p></div><div class="scard"><div class="ico">&#x1F4F1;</div><h3>Telegram Bot</h3><p>Real-time alerts for new tokens, rug pull warnings, and trade confirmations. Full control from your phone.</p></div></div></div></section>
-
+<nav><div class="c"><a class="nl" href="#">SolSniper</a><ul class="nk"><li><a href="#problem">Problem</a></li><li><a href="#features">Features</a></li><li><a href="#demo">Demo</a></li><li><a href="#compare">Compare</a></li><li><a href="#pricing">Pricing</a></li></ul><a class="nc" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started</a></div></nav>
+<section class="hero"><div class="c"><div class="badge">AI-Powered + Auto Trading + Smart Money Tracking</div><h1>The Most Advanced<br><span class="g">Solana Trading Bot</span></h1><p class="hs">SolSniper combines AI-powered rug detection, automated trading, smart money tracking, and token discovery. The only bot that protects you AND makes you money.</p><div class="hstats"><div class="st"><div class="sn">80%+</div><div class="sl">Tokens Are Rugs</div></div><div class="st"><div class="sn">0%</div><div class="sl">Trading Fees</div></div><div class="st"><div class="sn">AI</div><div class="sl">Powered Detection</div></div><div class="st"><div class="sn">Auto</div><div class="sl">Buy and Sell</div></div></div><div class="cta"><a class="btn bp" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started Free</a><a class="btn bs" href="#demo">See Live Demo</a></div><div class="ht"><span><span class="dot"></span> Anti-Rug ML</span><span><span class="dot"></span> Auto Trading</span><span><span class="dot"></span> Smart Money</span><span><span class="dot"></span> Token Discovery</span><span><span class="dot"></span> Jito Bundles</span></div></div></section>
+<section class="prob" id="problem"><div class="c"><span class="sl2">The Problem</span><h2 class="st2">Every Day, Traders Lose Millions to Rug Pulls</h2><div class="pgrid"><div class="pcard"><div class="num">80%+</div><h3>New Tokens Are Rugs</h3><p>Dev launches token, collects liquidity, disappears. Thousands of times per day on Solana.</p></div><div class="pcard"><div class="num">$1B+</div><h3>Lost to Scams in 2025</h3><p>Trojan charges 1% per trade. Banana Gun charges 0.5%. NONE detect rug pulls.</p></div><div class="pcard"><div class="num">0</div><h3>Bots with Real ML</h3><p>Maestro claims anti-rug but uses basic pattern matching. No bot has real AI detection.</p></div></div></div></section>
+<section id="features"><div class="c"><span class="sl2">Features</span><h2 class="st2">Everything You Need. Nothing You Do Not.</h2><div class="sgrid"><div class="scard"><div class="ico">&#x1F9E0;</div><h3>AI Rug Prediction</h3><p>ML engine analyzes 50+ on-chain signals. Historical pattern matching against known scams. Confidence intervals on every score.</p></div><div class="scard"><div class="ico">&#x1F4CA;</div><h3>Token Scoring 0.0-1.0</h3><p>Every token gets a real-time risk score. 0.0 = safe. 1.0 = definite rug. Trade with data, not guesswork.</p></div><div class="scard"><div class="ico">&#x1F3AF;</div><h3>Auto Trading</h3><p>Set take-profit and stop-loss. Bot executes automatically. Trailing stop-loss to maximize profits.</p></div><div class="scard"><div class="ico">&#x1F48E;</div><h3>Smart Money Tracking</h3><p>Track top wallets in real-time. See what whales are buying. Copy trade with risk scoring.</p></div><div class="scard"><div class="ico">&#x1F50D;</div><h3>Token Discovery</h3><p>Find trending tokens, new launches, volume leaders. Filter by risk score. Never miss an opportunity.</p></div><div class="scard"><div class="ico">&#x26A1;</div><h3>Jito Bundles</h3><p>Private mempool execution. No front-running. No sandwich attacks. Your trades stay private.</p></div><div class="scard"><div class="ico">&#x1F4B0;</div><h3>Zero Trading Fees</h3><p>Unlike Trojan (1%) and Banana Gun (0.5%), SolSniper charges 0%. Keep 100% of profits.</p></div><div class="scard"><div class="ico">&#x1F512;</div><h3>Self-Hosted</h3><p>Your keys, your control. Run on your own server. No trust required. Full transparency.</p></div><div class="scard"><div class="ico">&#x1F4F1;</div><h3>Telegram Alerts</h3><p>Real-time alerts for new tokens, rug warnings, trade confirmations. Control from your phone.</p></div></div></div></section>
 <section class="demo" id="demo"><div class="c"><span class="sl2">Live Demo</span><h2 class="st2">See SolSniper In Action</h2><div class="dbox"><div class="dcmd">$ solsniper scan 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU</div><div class="dout"><span class="y">Token:</span> Wrapped SOL (WSOL)
 <span class="y">Risk Score:</span> 0.12/1.0 <span class="ck">(LOW RISK)</span>
 
@@ -91,17 +85,13 @@ footer{padding:35px 0;text-align:center;color:#333;border-top:1px solid #151515;
   Mint Authority:      <span class="ck">Disabled</span>
   Freeze Authority:    <span class="ck">Disabled</span>
   Holder Distribution: <span class="ck">Healthy</span>
-  Liquidity:           <span class="ck">Deep</span>
-  Social Presence:     <span class="ck">Strong</span>
+  Liquidity:           <span class="ck">$2.5M Deep</span>
+  AI Confidence:       <span class="ck">94%</span>
 
-<span class="y">Recommendation:</span> <span class="ck">SAFE TO TRADE</span></div><p style="margin-top:1rem;color:#555;text-align:center;font-size:.85rem">This is REAL output from on-chain data. Not simulated.</p></div></div></section>
-
-<section id="compare"><div class="c"><span class="sl2">Comparison</span><h2 class="st2">Why Traders Choose SolSniper</h2><table class="ctbl"><thead><tr><th>Feature</th><th>Trojan</th><th>Banana Gun</th><th>Photon</th><th class="hl">SolSniper</th></tr></thead><tbody><tr><td>Trading Fees</td><td class="cr">1%</td><td class="cr">0.5-1%</td><td class="cr">~0.5%</td><td class="hl ck"><strong>0%</strong></td></tr><tr><td>Anti-Rug Protection</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>REAL ML</strong></td></tr><tr><td>Token Scoring</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>0.0-1.0</strong></td></tr><tr><td>Self-Hosted</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>Yes</strong></td></tr><tr><td>Jito Bundles</td><td class="ck">Yes</td><td class="ck">Yes</td><td class="ck">Yes</td><td class="hl ck"><strong>Yes</strong></td></tr><tr><td>Copy Trading</td><td class="ck">Yes</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>Yes + Score</strong></td></tr><tr><td>Open Source</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>Yes</strong></td></tr><tr><td>On-Chain Data</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>DexScreener+RPC</strong></td></tr></tbody></table></div></section>
-
-<section id="pricing"><div class="c"><span class="sl2">Pricing</span><h2 class="st2">Simple. Transparent. Fair.</h2><div class="pgrid2"><div class="pcard2"><h3>Self-Hosted</h3><div class="pp">FREE</div><ul class="pf"><li>Anti-rug ML engine</li><li>Token scoring 0.0-1.0</li><li>CLI + Python SDK</li><li>Your RPC, your keys</li><li>Community support</li></ul><a class="btn bs" style="width:100%;justify-content:center" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started</a></div><div class="pcard2 feat"><div class="badge" style="margin-bottom:.5rem">MOST POPULAR</div><h3>Pro Monthly</h3><div class="pp">$49<span>/mo</span></div><ul class="pf"><li>Everything in Free</li><li>Hosted RPC + Jito</li><li>Telegram bot alerts</li><li>Copy trading scoring</li><li>1000 tx/mo included</li><li>Auto-updates</li></ul><a class="btn bp" style="width:100%;justify-content:center" href="https://github.com/ezequiellich44-cmd/SolSniper/issues/1">Subscribe Now</a></div><div class="pcard2"><h3>Pro Lifetime</h3><div class="pp">$249</div><ul class="pf"><li>Everything in Pro</li><li>One-time payment</li><li>Lifetime updates</li><li>Priority support</li><li>Commercial license</li></ul><a class="btn bs" style="width:100%;justify-content:center" href="https://github.com/ezequiellich44-cmd/SolSniper/issues/1">Buy Now</a></div></div></div></section>
-
-<section class="final"><div class="c"><h2 class="st2">Stop Getting Rugged.</h2><p class="ss" style="margin:0 auto 2rem;text-align:center">Start trading with real protection. Free forever.</p><div class="cta"><a class="btn bp" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started Free</a><a class="btn bs" href="https://github.com/ezequiellich44-cmd/SolSniper/issues/1">Subscribe to Pro</a></div></div></section>
-
-<footer><div class="c"><p>SolSniper &mdash; Anti-Rug ML for Solana</p><p style="margin-top:.4rem">Built for the Solana community</p></div></footer>
+<span class="y">Recommendation:</span> <span class="ck">SAFE TO TRADE</span></div><p style="margin-top:1rem;color:#555;text-align:center;font-size:.85rem">This is REAL output from on-chain data.</p></div></div></section>
+<section id="compare"><div class="c"><span class="sl2">Comparison</span><h2 class="st2">Why Traders Choose SolSniper</h2><table class="ctbl"><thead><tr><th>Feature</th><th>Trojan</th><th>Banana Gun</th><th>Photon</th><th>Maestro</th><th class="hl">SolSniper</th></tr></thead><tbody><tr><td>Trading Fees</td><td class="cr">1%</td><td class="cr">0.5%</td><td class="cr">1%</td><td class="cr">1%+200/mo</td><td class="hl ck"><strong>0%</strong></td></tr><tr><td>AI Rug Detection</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="cr">Basic</td><td class="hl ck"><strong>Real ML</strong></td></tr><tr><td>Token Scoring</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>0.0-1.0</strong></td></tr><tr><td>Auto Trading</td><td class="ck">Yes</td><td class="ck">Yes</td><td class="cr">No</td><td class="ck">Yes</td><td class="hl ck"><strong>Yes+TP/SL</strong></td></tr><tr><td>Smart Money</td><td class="ck">Yes</td><td class="cr">No</td><td class="cr">No</td><td class="ck">Yes</td><td class="hl ck"><strong>Yes+Score</strong></td></tr><tr><td>Self-Hosted</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>Yes</strong></td></tr><tr><td>Open Source</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="cr">No</td><td class="hl ck"><strong>Yes</strong></td></tr><tr><td>Jito Bundles</td><td class="ck">Yes</td><td class="ck">Yes</td><td class="ck">Yes</td><td class="ck">Yes</td><td class="hl ck"><strong>Yes</strong></td></tr></tbody></table></div></section>
+<section id="pricing"><div class="c"><span class="sl2">Pricing</span><h2 class="st2">Simple. Transparent. Fair.</h2><div class="pgrid2"><div class="pcard2"><h3>Self-Hosted</h3><div class="pp">FREE</div><p class="ss" style="text-align:center;margin:0 auto">Full access to all features</p><ul class="pf"><li>AI rug detection engine</li><li>Token scoring 0.0-1.0</li><li>Auto trading + TP/SL</li><li>Smart money tracking</li><li>Token discovery</li><li>CLI + Python SDK</li><li>Your RPC, your keys</li></ul><a class="btn bs" style="width:100%;justify-content:center" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started Free</a></div><div class="pcard2 feat"><div class="badge" style="margin-bottom:.5rem">BEST VALUE</div><h3>Pro Lifetime</h3><div class="pp">$249</div><p class="ss" style="text-align:center;margin:0 auto">One-time payment. Forever.</p><ul class="pf"><li>Everything in Free</li><li>Hosted RPC + Jito</li><li>Telegram bot alerts</li><li>Copy trading scoring</li><li>Portfolio tracker</li><li>Priority support</li><li>Lifetime updates</li></ul><a class="btn bp" style="width:100%;justify-content:center" href="https://github.com/ezequiellich44-cmd/SolSniper/issues/1">Buy Lifetime</a></div><div class="pcard2"><h3>Pro Monthly</h3><div class="pp">$49<span>/mo</span></p><p class="ss" style="text-align:center;margin:0 auto">Try before you commit</p><ul class="pf"><li>Everything in Free</li><li>Hosted RPC + Jito</li><li>Telegram bot alerts</li><li>Copy trading scoring</li><li>Portfolio tracker</li><li>Cancel anytime</li></ul><a class="btn bs" style="width:100%;justify-content:center" href="https://github.com/ezequiellich44-cmd/SolSniper/issues/1">Subscribe Monthly</a></div></div></div></section>
+<section class="final"><div class="c"><h2 class="st2">Stop Getting Rugged.<br>Start Trading Smart.</h2><p class="ss" style="margin:0 auto 2rem;text-align:center">Join the future of Solana trading. AI-powered protection. Zero fees.</p><div class="cta"><a class="btn bp" href="https://github.com/ezequiellich44-cmd/SolSniper">Get Started Free</a><a class="btn bs" href="https://github.com/ezequiellich44-cmd/SolSniper/issues/1">Buy Pro Lifetime</a></div></div></section>
+<footer><div class="c"><p>SolSniper - The Most Advanced Solana Trading Bot</p><p style="margin-top:.4rem">Built for the Solana community</p></div></footer>
 </body>
 </html>
