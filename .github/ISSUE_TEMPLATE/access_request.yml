@@ -1,0 +1,45 @@
+name: 🎯 SolSniper Access Request
+description: Request access to SolSniper Pro (Lifetime or Monthly)
+title: '[ACCESS REQUEST] '
+labels: ['access-request', 'sales']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 SolSniper Pro Access Request
+        
+        Thanks for your interest! Fill this out and I'll send you payment details within 1 hour.
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Which plan?
+      options:
+        - 'Founding Member - .50 (70% OFF, Lifetime, 50 spots)'
+        - 'Pro Lifetime -  (Lifetime access)'
+        - 'Pro Monthly - /mo (Cancel anytime)'
+        - 'Free Self-Hosted -  (Your server, your keys)'
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact (Telegram @username, Email, or Discord)
+      placeholder: '@username or email@example.com'
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: Trading experience
+      placeholder: 'How long trading Solana? What bots used?'
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Agreement
+      options:
+        - label: 'I understand this is a real purchase (SOL/USDC payment)'
+          required: true
+        - label: 'I will not share/distribute the bot'
+          required: true
